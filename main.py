@@ -10,4 +10,26 @@ class Expense:
     def __str__(self):  # this make it easy to print the expense in presentable format
         return f"{self.date} | ₹{self.amount} | {self.category} | {self.description}" 
     
+    import os
+    import datetime
+
+class ExpenseTracker:
+     def __init__(self, filename="expenses.txt"):
+            self.filename = filename
+            self.expense = []
+     def add_expense(self, expense):
+          self.expense.append(expense)
+          print("Expense added successfully")
+     def save_expenses(self):
+          with open(self.filename,"a") as file:
+               for expense in self.expenses:
+                    file.write(str(expense) + "\n") # write one line per expense
+                    self.expenses.clear()  # Clear the list after saving
+                    print("All expenses saved to file.")
+
+                    
+
+
+
+   
 
