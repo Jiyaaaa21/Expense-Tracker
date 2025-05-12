@@ -1,5 +1,5 @@
 import datetime
-import csv
+import os
 
 class Expense:
     def __init__(self, amount, category, description):
@@ -27,37 +27,6 @@ class ExpenseTracker:
             self.expenses.clear()
             print("All expenses saved to file.")
 
-if __name__ == "__main__":
-    tracker = ExpenseTracker()  # Create an instance of the tracker
-
-    while True:
-        print("\n==== Expense Tracker ====")
-        print("1. Add New Expense")
-        print("2. Save Expenses to File")
-        print("3. Exit")
-        choice = input("Enter your choice: ")
-
-        if choice == "1":
-            amount = float(input("Enter amount: ₹"))
-            category = input("Enter category: ")
-            description = input("Enter description: ")
-
-            expense = Expense(amount, category, description)  # create Expense
-            tracker.add_expense(expense)  # add to tracker
-
-        elif choice == "2":
-            tracker.save_expenses()
-
-        elif choice == "3":
-            tracker.view_expenses()
-            break
-        elif choice == "4":
-            print("Goodbye!")
-            break
-
-        else:
-            print("Invalid choice. Please enter 1, 2 or 3.")
-    
     def view_expenses(self):
         if not os.path.exists(self.filename):
             print("No expenses found.")
@@ -69,6 +38,46 @@ if __name__ == "__main__":
             for line in file:
                  print(line.strip())
             print("-" * 50) 
+
+def main():
+    tracker = ExpenseTracker()
+
+    while True:
+        print("\n=== Expense Tracker ===")
+        print("1. Add Expense")
+        print("2. Save Expenses to File")
+        print("3. View Saved Expenses")
+        print("4. Exit")
+
+        choice = input("Enter your choice (1-4): ")
+
+        if choice == "1":
+            try:
+                amount = float(input("Enter amount: ₹"))
+                category = input("Enter category: ")
+                description = input("Enter description: ")
+                expense = Expense(amount, category, description)
+                tracker.add_expense(expense)
+            except ValueError:
+                print("Invalid input. Amount must be a number.")
+        elif choice == "2":
+            tracker.save_expenses()
+        elif choice == "3":
+            tracker.view_expenses()
+        elif choice == "4":
+            print("Exiting... Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
+    
+        
+
+    
+
+
 
 
 
