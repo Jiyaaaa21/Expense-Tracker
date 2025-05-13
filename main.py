@@ -61,14 +61,14 @@ class ExpenseTracker:
                     else:
                         category_summary[category] = amount
                 except Exception as e:
-                    print(f"Skipping a line due to errpr:{e}")
+                    print(f"Skipping a line due to error:{e}")
 
-        print("\n==== Total Expense Summary ====")
-        print("f\n Total Expenses: ₹{total:.2f}")
-        print("Category-wise summary:")
+        print("\n=== Total Expense Summary ===")
+        print(f"Total Spent: ₹{total:.2f}\n")
+        print("Spending by Category:")
+        for category, amount in category_summary.items():
+            print(f"  {category}: ₹{amount:.2f}")
 
-        for category, amt in category_summary.items():
-            print(f" {category}: ₹{amt:.2f}")
 
 def main():
     tracker = ExpenseTracker()
@@ -106,7 +106,7 @@ def main():
             print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
-    main()
+    main() 
 
     
 
