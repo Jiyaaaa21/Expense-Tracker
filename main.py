@@ -38,6 +38,37 @@ class ExpenseTracker:
             for line in file:
                  print(line.strip())
             print("-" * 50) 
+    
+    def show_total_summary(self):
+        if not os.path.exists(self.filename):
+            print("No expense found.")
+            return
+        
+        total = 0.0
+        category_summary= {}
+
+        with open(self.filename, "r", encoding = "utf-8") as file:
+            for line in file:
+                try:
+                    parts = line.strip().split("|")
+                    amount_str = parts[1].strip().replace("₹", "")
+                    amount = float(amount_str)
+                    category = parts[2].strip()
+
+                    total +=amount
+                    if category in category_summary:
+                        category_summary[category] += amount
+                    else:
+                        category_summary[category] = amount
+                except Exception as e:
+                    print(f"Skipping a line due to errpr:{e}")
+
+        print("\n==== Total Expense Summary ====")
+        print("f\n Total Expenses: ₹{total:.2f}")
+        print("Category-wise summary:")
+
+        for category, amt in category_summary.items():
+            print(f" {category}: ₹{amt:.2f}")
 
 def main():
     tracker = ExpenseTracker()
@@ -47,9 +78,10 @@ def main():
         print("1. Add Expense")
         print("2. Save Expenses to File")
         print("3. View Saved Expenses")
-        print("4. Exit")
+        print("4. Total summary")
+        print("5. Exit")
 
-        choice = input("Enter your choice (1-4): ")
+        choice = input("Enter your choice (1-5):")
 
         if choice == "1":
             try:
@@ -65,7 +97,10 @@ def main():
         elif choice == "3":
             tracker.view_expenses()
         elif choice == "4":
-            print("Exiting... Goodbye!")
+             tracker.show_total_summary()
+        elif choice == "5":
+            print("Goodbye!")
+
             break
         else:
             print("Invalid choice. Please try again.")
@@ -73,8 +108,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-        
+    
 
     
 

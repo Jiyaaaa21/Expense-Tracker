@@ -1,3 +1,7 @@
 2025-05-13 09:54:51 | ₹100.0 | Food | from Haldiram
 2025-05-13 09:56:07 | ₹50.0 | Ice cream  | Vanilla
 2025-05-13 09:56:59 | ₹300.0 | Grocery | From D-MART store
+2025-05-13 10:25:16 | ₹500.0 | Skincare | From purple.com
+2025-05-13 10:25:46 | ₹400.0 | Food | From Haldiram
+2025-05-13 10:26:11 | ₹5000.0 | Shopping | H&M
+2025-05-13 10:30:52 | ₹300.0 | Miscellenous expenses | no record
