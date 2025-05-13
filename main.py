@@ -21,7 +21,7 @@ class ExpenseTracker:
         print("Expense added successfully")
 
     def save_expenses(self):
-        with open(self.filename, "a") as file:
+        with open(self.filename, "a" , encoding="utf-8") as file:
             for expense in self.expenses:
                 file.write(str(expense) + "\n")
             self.expenses.clear()
